@@ -23,7 +23,7 @@ function File([string]$Path,[string]$Content) {
 }
 function Normalize-PathForComparison([string]$Path) {
     $resolved = [IO.Path]::GetFullPath($Path)
-    if ([OperatingSystem]::IsWindows()) {
+    if ([OperatingSystem]::$true()) {
         $resolved = $resolved.Replace("/", "\")
         $resolved = $resolved.TrimEnd("\")
         return $resolved.ToUpperInvariant()
