@@ -21,6 +21,15 @@ function File([string]$Path,[string]$Content) {
     Ensure-Directory (Split-Path -Parent $Path)
     [IO.File]::WriteAllText($Path,$Content,[Text.UTF8Encoding]::new($false))
 }
+function Normalize-PathForComparison([string]$Path) {
+    $resolved = [IO.Path]::GetFullPath($Path)
+    if ([OperatingSystem]::IsWindows()) {
+        $resolved = $resolved.Replace("/", "\")
+        $resolved = $resolved.TrimEnd("\")
+        return $resolved.ToUpperInvariant()
+    }
+    return $resolved.TrimEnd("/")
+}
 
 Step "Validate canonical Quant_Lab identity"
 if ($Root -ne "C:\QUANT_LAB") { throw "Canonical root is locked to C:\QUANT_LAB" }
@@ -206,7 +215,13 @@ try {
     Write-Host "ROOT=$r"
     Write-Host "BRANCH=$b"
     Write-Host "ORIGIN=$o"
-    if ($r -ne $Root) { throw "Git root mismatch" }
+    $canonicalGitRoot = Normalize-PathForComparison $r
+    $canonicalRoot = Normalize-PathForComparison $Root
+    if ($canonicalGitRoot -ne $canonicalRoot) {
+        Write-Host "CANONICAL_GIT_ROOT=$canonicalGitRoot" -ForegroundColor Red
+        Write-Host "CANONICAL_ROOT=$canonicalRoot" -ForegroundColor Red
+        throw "Git root mismatch"
+    }
     if ($b -ne "main") { throw "Branch mismatch" }
     if ($o -ne $GitHubRemote) { throw "Origin mismatch" }
 } finally { Pop-Location }
