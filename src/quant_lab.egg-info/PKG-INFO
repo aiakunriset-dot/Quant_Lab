@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: quant-lab
+Version: 0.1.0
+Summary: Institutional quantitative research and algorithmic trading foundation
+Requires-Python: <3.15,>=3.14
+Description-Content-Type: text/markdown
+Requires-Dist: polars<2,>=1.32
+Requires-Dist: pyarrow==25.0.1
+Requires-Dist: pydantic<3,>=2.11
+Requires-Dist: pyyaml<7,>=6
+Provides-Extra: dev
+Requires-Dist: pytest<10,>=9; extra == "dev"
+Requires-Dist: hypothesis<7,>=6; extra == "dev"
+Requires-Dist: ruff<1,>=0.12; extra == "dev"
+Requires-Dist: mypy<2,>=1.17; extra == "dev"
+
+# Quant_Lab
+
+Canonical quantitative research and algorithmic trading platform.
+
+Root: C:\QUANT_LAB
+Package: quantlab
+Distribution: quant-lab
+GitHub: aiakunriset-dot/Quant_Lab
+
+Git/GitHub is the code authority.
+Google Drive stores large datasets and artifacts.
+Google Colab is the compute plane.
+GPT, Claude and Aider operate as controlled agents.
+
+No agent output, notebook, cache or generated artifact supersedes a Git commit.

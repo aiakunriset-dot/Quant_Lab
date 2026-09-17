@@ -1,0 +1,10 @@
+polars<2,>=1.32
+pyarrow==25.0.1
+pydantic<3,>=2.11
+pyyaml<7,>=6
+
+[dev]
+pytest<10,>=9
+hypothesis<7,>=6
+ruff<1,>=0.12
+mypy<2,>=1.17

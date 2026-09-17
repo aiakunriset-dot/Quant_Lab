@@ -1,0 +1,38 @@
+project:
+  name: Quant_Lab
+  root: C:\QUANT_LAB
+  python_package: quantlab
+  distribution: quant-lab
+  github_repository: aiakunriset-dot/Quant_Lab
+  default_branch: main
+
+planes:
+  code_authority: git
+  remote_authority: github
+  data_artifact_plane: google_drive
+  compute_plane: google_colab
+  agents: [gpt, claude, aider]
+
+historical_data:
+  source: dukascopy
+  timeframe: M1
+  interval: "[start,end)"
+  start: "2019-01-02"
+  end: "2026-09-01"
+  instruments:
+    - usa30idxusd
+    - usa500idxusd
+    - usatechidxusd
+    - deuidxeur
+    - gbridxgbp
+    - jpnidxjpy
+    - xauusd
+    - dollaridxusd
+    - volidxusd
+
+provenance:
+  hash: SHA-256
+  timestamps: UTC
+  synthetic_data: forbidden
+  silent_repair: forbidden
+  partial_is_validated: false

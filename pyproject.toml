@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-lab"
+version = "0.1.0"
+description = "Institutional quantitative research and algorithmic trading foundation"
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+  "polars>=1.32,<2",
+  "pyarrow==25.0.1",
+  "pydantic>=2.11,<3",
+  "pyyaml>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=9,<10",
+  "hypothesis>=6,<7",
+  "ruff>=0.12,<1",
+  "mypy>=1.17,<2",
+]
+
+[project.scripts]
+quantlab = "quantlab.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
